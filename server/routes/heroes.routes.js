@@ -31,7 +31,6 @@ router.get('/', async (req, res) => {
 
 
 router.delete('/:id', async (req, res) => {
-	// console.log('id', req.params.id);
 	try {
 		await Hero.findOne({ _id: req.params.id }).exec((err, result) => {
 			if (err) {
