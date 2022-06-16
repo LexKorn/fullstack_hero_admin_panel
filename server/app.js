@@ -11,7 +11,8 @@ const app = express();
 app.use(cors());
 app.use(express.json()); 
 
-app.use('/api/heroes', require('./routes/heroes.routes'));
+app.use('/heroes', require('./routes/heroes.routes'));
+app.use('/filters', require('./routes/filters.routes'));
 
 
 const PORT = config.get('port') || 5000;

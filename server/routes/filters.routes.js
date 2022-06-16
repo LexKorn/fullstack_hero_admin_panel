@@ -1,17 +1,17 @@
 const {Router} = require ('express');
-const Hero = require('../models/Hero');
+const Filter = require('../models/Filter');
 
 const router = Router();
 
 router.post('/post', async (req, res) => {
     try {
-        const {name, description, element} = req.body;
+        const {name, label, className} = req.body;
 
-        const hero = new Hero({name, description, element});
+        const filter = new Filter({name, label, className});
 
-        await hero.save();
+        await filter.save();
 
-        res.status(201).json({message: 'Hero was created'});
+        res.status(201).json({message: 'Filter was created'});
 
     } catch(err) {
         res.status(500).json({message: 'Something wrong.. Try again...'});
@@ -21,8 +21,8 @@ router.post('/post', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const heroes = await Hero.find(req.params); 
-        res.json(heroes);
+        const filters = await Filter.find(req.params); 
+        res.json(filters);
 
     } catch(err) {
         res.status(500).json({message: 'Something wrong.. Try again...'});
@@ -31,11 +31,10 @@ router.get('/', async (req, res) => {
 
 
 router.delete('/:id', async (req, res) => {
-	// console.log('id', req.params.id);
 	try {
-		await Hero.findOne({ _id: req.params.id }).exec((err, result) => {
+		await Filter.findOne({ _id: req.params.id }).exec((err, result) => {
 			if (err) {
-                return res.status(422).json({ message: `No the same hero ${id}` });
+                return res.status(422).json({ message: `No the same filter ${id}` });
             }
 
 			result
