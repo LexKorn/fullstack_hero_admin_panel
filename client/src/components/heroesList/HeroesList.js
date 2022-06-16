@@ -54,6 +54,7 @@ const HeroesList = () => {
         }
 
         return arr.map(({id, ...props}) => {
+        // return arr.map(({...props}) => {
             return (
                 <CSSTransition
                     key={id}

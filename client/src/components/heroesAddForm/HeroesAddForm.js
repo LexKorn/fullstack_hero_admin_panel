@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {v4 as uuidv4} from 'uuid';
 
 import { useAddHeroMutation } from '../../api/apiSlice';
 
@@ -8,7 +7,7 @@ import './heroesAddForm.sass';
 
 
 const HeroesAddForm = () => {
-    const [addHero, {isLoading}] = useAddHeroMutation();
+    const [addHero] = useAddHeroMutation();
 
     return (
         <Formik
@@ -29,7 +28,6 @@ const HeroesAddForm = () => {
                         .max(5, "Элемент не выбран")
             })}
             onSubmit={(values, {resetForm}) => {
-                values.id = uuidv4();
                 addHero(values).unwrap();
                 resetForm();
                 }                
