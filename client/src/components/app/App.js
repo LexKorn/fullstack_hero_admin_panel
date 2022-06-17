@@ -1,21 +1,17 @@
-import HeroesList from '../heroesList/HeroesList';
-import HeroesAddForm from '../heroesAddForm/HeroesAddForm';
-import HeroesFilters from '../heroesFilters/HeroesFilters';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './app.sass';
+import MainPage from '../../pages/MainPage';
 
-const App = () => {
-    
+
+const App = () => {    
     return (
-        <main className="app">
-            <div className="content">
-                <HeroesList/>
-                <div className="content__interactive">
-                    <HeroesAddForm/>
-                    <HeroesFilters/>
-                </div>
-            </div>
-        </main>
+        <Router>
+            <Switch>
+                <Route exact path="/" >
+                    <MainPage />
+                </Route>
+            </Switch>
+        </Router>
     )
 }
 
